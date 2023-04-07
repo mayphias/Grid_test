@@ -8,11 +8,15 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 
 
-public class AxisDrawer extends JPanel implements ComponentListener {
+public class Drawer extends JPanel implements ComponentListener {
 
     private TickDrawer tickDrawer;
+    private String selectedShape = "Square"; // default to square
+    Square square = new Square(0, 0, 0);
+    
 
-    public AxisDrawer() {
+
+    public Drawer() {
         this.addComponentListener(this);
         tickDrawer = new TickDrawer();
     }
@@ -45,6 +49,11 @@ public class AxisDrawer extends JPanel implements ComponentListener {
         for (int y = -15; y <= 15; y++) {
             int yPixel = getHeight() / 2 - y * 50;
             g.drawString(Integer.toString(y), getWidth() / 2 - 30 - g.getFontMetrics().stringWidth(Integer.toString(y)), yPixel + g.getFont().getSize() / 2);
+        }
+
+        //desenha quadrado
+        if(selectedShape.equals("Square")) {
+            square.paintComponent(g2d);
         }
 
 
